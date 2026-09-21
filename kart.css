@@ -40,3 +40,6 @@
 .kesir i{font-style:normal;padding:0 3px}
 .kesir i:first-child{border-bottom:1.5px solid currentColor}
 .kart svg{max-width:100%;height:auto}
+
+/* inceleme ekranı: çok uzun şekiller sayfayı uzatmasın (oran korunur) */
+.kart .sekil svg{max-height:360px;width:auto}

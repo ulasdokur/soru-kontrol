@@ -62,8 +62,10 @@ input,textarea{font:inherit}
 .sutun-basi{font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
   color:var(--soluk);margin:0 0 8px 4px}
 .kart-sar{background:var(--yuzey);border-radius:14px;overflow:hidden;box-shadow:0 1px 10px rgba(31,26,46,.06)}
-.kart-sar .kart{margin:0;width:820px;max-width:100%}
-@media (max-width:1760px){ .kart-sar .kart{width:min(820px,calc(100vw - 56px))} }
+/* kart 820px için tasarlandı; iki sütun sığsın diye %88'e ölçekleniyor */
+.kart-sar .kart{margin:0;width:820px;max-width:100%;zoom:.88}
+@media (max-width:1560px){ .kart-sar{max-width:calc(100vw - 48px)} .kart-sar .kart{zoom:.8} }
+@media (max-width:820px){ .kart-sar .kart{width:100%;zoom:1} }
 
 /* ── Karar paneli ──────────────────────────────────── */
 .karar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--yuzey);
@@ -95,10 +97,15 @@ input,textarea{font:inherit}
 #bitti p{color:var(--soluk);max-width:460px;margin:0 auto 20px;line-height:1.6}
 
 @media (max-width:640px){
-  .alan{padding:16px 12px 280px}
+  .alan{padding:16px 12px 320px}
   .kart-sar .kart{padding:18px 16px 14px}
+  .kart-sar .soru,.kart-sar .secenekler,.kart-sar .alt{font-size:18px}
   .d{min-width:0;font-size:14px;padding:12px 6px}
   .d kbd{display:none}
+  .alt-satir{flex-direction:column}
+  .not{min-height:64px}
+  .ilerle{padding:13px 26px}
+  .ust-cubuk{padding:9px 14px;gap:10px}
 }
 </style>
 </head>
