@@ -63,8 +63,8 @@ input,textarea{font:inherit}
   color:var(--soluk);margin:0 0 8px 4px}
 .kart-sar{background:var(--yuzey);border-radius:14px;overflow:hidden;box-shadow:0 1px 10px rgba(31,26,46,.06)}
 /* kart 820px için tasarlandı; iki sütun sığsın diye %88'e ölçekleniyor */
-.kart-sar .kart{margin:0;width:820px;max-width:100%;zoom:.88}
-@media (max-width:1560px){ .kart-sar{max-width:calc(100vw - 48px)} .kart-sar .kart{zoom:.8} }
+.kart-sar .kart{margin:0;width:820px;max-width:100%;zoom:.72}
+@media (max-width:1400px){ .kart-sar{max-width:calc(100vw - 48px)} .kart-sar .kart{zoom:.66} }
 @media (max-width:820px){ .kart-sar .kart{width:100%;zoom:1} }
 
 /* ── Karar paneli ──────────────────────────────────── */
@@ -88,6 +88,8 @@ input,textarea{font:inherit}
 .not{flex:1;padding:11px 13px;border:1px solid var(--cizgi);border-radius:10px;resize:vertical;
   min-height:46px;max-height:120px;line-height:1.45;background:#fff;color:var(--metin)}
 .not:focus{outline:none;border-color:var(--mor)}
+.not.gerekli{border-color:var(--uyari);background:var(--uyari-zemin)}
+.durum-yazi.uyar{color:var(--uyari);font-weight:600}
 .ilerle{padding:0 26px;border-radius:10px;background:var(--mor);color:#fff;font-weight:600;white-space:nowrap}
 .durum-yazi{font-size:12px;color:var(--soluk);min-height:16px}
 
@@ -159,7 +161,7 @@ input,textarea{font:inherit}
       <div class="kusurlar" id="kusurlar"></div>
       <div class="alt-satir">
         <textarea class="not" id="not" rows="1"
-          placeholder="Not (isteğe bağlı) — neyi düzeltmemiz gerekiyor?"></textarea>
+          placeholder="Not — neyi düzeltmemiz gerekiyor? (şüpheli ve hatalı için zorunlu)"></textarea>
         <button class="ilerle" id="kaydet-ilerle">Kaydet ve ilerle</button>
       </div>
       <div class="durum-yazi" id="durum-yazi"></div>

@@ -82,6 +82,8 @@ function goster() {
   $("#geri").disabled = i === 0;
   $("#ileri").disabled = i === sorular.length - 1;
   $("#durum-yazi").textContent = "";
+  $("#durum-yazi").classList.remove("uyar");
+  $("#not").classList.remove("gerekli");
   $("#bitti").style.display = "none";
   ilerlemeYaz();
   acilis = Date.now();
@@ -102,6 +104,18 @@ function ilerlemeYaz() {
 
 /* ── Kaydetme ─────────────────────────────────────────────────────── */
 
+// "uygun" dışındaki her kararda gerekçe zorunlu — sunucu da aynı kuralı uyguluyor
+function notGerekli(s) { return (s.durum === "supheli" || s.durum === "hatali") && s.not.trim().length < 3; }
+
+function notUyar(goster) {
+  $("#not").classList.toggle("gerekli", goster);
+  $("#durum-yazi").classList.toggle("uyar", goster);
+  if (goster) {
+    $("#durum-yazi").textContent = "Bu karar için kısa bir not yazın — neyin sorunlu olduğunu belirtin.";
+    $("#not").focus();
+  }
+}
+
 async function kaydet(ilerle) {
   const s = sorular[i];
   if (!s) return;
@@ -110,6 +124,8 @@ async function kaydet(ilerle) {
     if (ilerle) ileri();
     return;
   }
+  if (notGerekli(s)) { notUyar(true); return; }
+  notUyar(false);
   $("#durum-yazi").textContent = "kaydediliyor…";
   const { data, error } = await sb.rpc("isaretle", {
     p_kod: kod, p_soru: s.id, p_durum: s.durum || null,
@@ -117,6 +133,7 @@ async function kaydet(ilerle) {
     p_sure: Math.min(Math.round((Date.now() - acilis) / 1000), 3600),
   });
   if (error || !data || !data.ok) {
+    if (data && data.hata === "not_gerekli") { notUyar(true); return; }
     $("#durum-yazi").textContent = "⚠ kaydedilemedi — internet bağlantınızı kontrol edin, işaret ekranda duruyor";
     return;
   }
@@ -139,6 +156,7 @@ $("#gir").addEventListener("click", () => girisDene($("#kod").value));
 $("#kod").addEventListener("keydown", (e) => { if (e.key === "Enter") girisDene($("#kod").value); });
 
 $("#geri").addEventListener("click", async () => { await kaydet(false); if (i > 0) { i--; goster(); } });
+$("#not").addEventListener("blur", () => { if (!notGerekli(sorular[i] || {durum:""})) notUyar(false); });
 $("#ileri").addEventListener("click", () => kaydet(true));
 $("#kaydet-ilerle").addEventListener("click", () => kaydet(true));
 
@@ -153,6 +171,8 @@ document.addEventListener("click", (e) => {
     const s = sorular[i];
     s.durum = s.durum === d.dataset.durum ? "" : d.dataset.durum;
     document.querySelectorAll(".d").forEach((b) => b.classList.toggle("secili", b.dataset.durum === s.durum));
+    s.not = $("#not").value.trim();
+    if (notGerekli(s)) { notUyar(true); return; }
     kaydet(false);
     return;
   }

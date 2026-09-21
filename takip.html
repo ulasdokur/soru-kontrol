@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Soru Kontrol · Takip</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --zemin:#F4F2F8; --yuzey:#fff; --metin:#1F1A2E; --soluk:#6B6580; --cizgi:#E4DFEE;
+  --mor:#6725BD; --mor-acik:#F3ECFE;
+  --ok:#0E8F5F; --ok-zemin:#E4F7EF;
+  --uyari:#B9761A; --uyari-zemin:#FDF1DF;
+  --hata:#C3312F; --hata-zemin:#FCEAEA;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--zemin);color:var(--metin);font-size:15px;
+  font-family:Poppins,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+
+#giris{min-height:100vh;display:grid;place-items:center;padding:24px}
+.giris-kutu{width:min(400px,100%);background:var(--yuzey);border-radius:18px;padding:34px 30px;
+  box-shadow:0 2px 24px rgba(31,26,46,.07)}
+.giris-kutu h1{margin:0 0 6px;font-size:22px;font-weight:600}
+.giris-kutu p{margin:0 0 24px;color:var(--soluk);font-size:14px;line-height:1.5}
+input{width:100%;padding:14px;border:2px solid var(--cizgi);border-radius:11px;font:inherit;
+  font-size:20px;letter-spacing:.2em;text-align:center;text-transform:uppercase;font-weight:600}
+input:focus{outline:none;border-color:var(--mor)}
+.birincil{width:100%;margin-top:13px;padding:14px;border-radius:11px;background:var(--mor);
+  color:#fff;font-weight:600;font-size:16px}
+.uyari-satir{margin-top:12px;color:var(--hata);font-size:14px;min-height:20px;text-align:center}
+
+#pano{display:none;max-width:1180px;margin:0 auto;padding:26px 20px 70px}
+h2{font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--soluk);
+  margin:34px 0 12px}
+.baslik{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:4px}
+.baslik h1{font-size:25px;margin:0;font-weight:600;letter-spacing:-.01em}
+.baslik span{color:var(--soluk);font-size:14px}
+.yenile{margin-left:auto;font-size:13px;color:var(--mor);text-decoration:underline}
+
+.ozet{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:18px}
+.kutu{background:var(--yuzey);border-radius:13px;padding:16px 18px}
+.kutu b{display:block;font-size:27px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.2}
+.kutu small{color:var(--soluk);font-size:12.5px}
+.kutu.u b{color:var(--ok)} .kutu.s b{color:var(--uyari)} .kutu.h b{color:var(--hata)}
+
+table{width:100%;border-collapse:collapse;background:var(--yuzey);border-radius:13px;overflow:hidden}
+th{text-align:left;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--soluk);
+  padding:12px 14px;border-bottom:1px solid var(--cizgi);font-weight:600;white-space:nowrap}
+td{padding:12px 14px;border-bottom:1px solid var(--cizgi);vertical-align:top;line-height:1.5}
+tr:last-child td{border-bottom:none}
+td.sayi{font-variant-numeric:tabular-nums;white-space:nowrap}
+.mini-cubuk{width:100px;height:6px;background:var(--cizgi);border-radius:99px;overflow:hidden;display:inline-block;
+  vertical-align:middle;margin-right:8px}
+.mini-cubuk i{display:block;height:100%;background:var(--mor)}
+.rozet{display:inline-block;padding:3px 10px;border-radius:99px;font-size:12.5px;font-weight:600;white-space:nowrap}
+.rozet.uygun{background:var(--ok-zemin);color:var(--ok)}
+.rozet.supheli{background:var(--uyari-zemin);color:var(--uyari)}
+.rozet.hatali{background:var(--hata-zemin);color:var(--hata)}
+.etiket{display:inline-block;background:var(--mor-acik);color:var(--mor);border-radius:99px;
+  padding:2px 9px;font-size:11.5px;margin:0 4px 3px 0}
+.kimlik-kod{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;color:var(--mor)}
+.suzgecler{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}
+.sz{padding:6px 13px;border-radius:99px;border:1px solid var(--cizgi);background:#fff;font-size:13px;color:var(--soluk)}
+.sz.secili{background:var(--mor);border-color:var(--mor);color:#fff;font-weight:600}
+.bos{color:var(--soluk);padding:22px;text-align:center;background:var(--yuzey);border-radius:13px}
+.sarma{overflow-x:auto}
+.soru-kimlik{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;white-space:nowrap}
+@media (max-width:640px){ td,th{padding:10px} .baslik h1{font-size:21px} }
+</style>
+</head>
+<body>
+
+<section id="giris">
+  <div class="giris-kutu">
+    <h1>Takip</h1>
+    <p>Yönetici kodunuzu girin. Hocaların ilerlemesini ve tüm işaretleri buradan görürsünüz.</p>
+    <input id="kod" maxlength="8" autocomplete="off" spellcheck="false" placeholder="- - - - - - - -">
+    <button id="gir" class="birincil">Giriş</button>
+    <div id="uyari" class="uyari-satir"></div>
+  </div>
+</section>
+
+<main id="pano">
+  <div class="baslik">
+    <h1>Soru Kontrol · Takip</h1>
+    <span id="kim"></span>
+    <button class="yenile" id="yenile">yenile</button>
+  </div>
+
+  <div class="ozet" id="ozet"></div>
+
+  <h2>Hocalar</h2>
+  <div class="sarma"><table id="hocalar"></table></div>
+
+  <h2>Uyuşmazlıklar <span style="text-transform:none;letter-spacing:0;font-weight:400">— aynı soruya farklı karar veren hocalar</span></h2>
+  <div id="uyusmazlik"></div>
+
+  <h2>Tüm işaretler</h2>
+  <div class="suzgecler" id="suzgecler"></div>
+  <div class="sarma" id="isaretler"></div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+const sb = window.supabase.createClient(
+  "https://rbjrnevngfuribasrnph.supabase.co",
+  "sb_publishable_yK1dNA6CGKIQ88U3gp53xA_nBLQGNVJ",
+  { auth: { persistSession: false } });
+
+const $ = (s) => document.querySelector(s);
+const kac = (n) => new Intl.NumberFormat("tr-TR").format(n);
+let kod = null, veri = null, suzgec = "hepsi";
+
+function esc(s) {
+  return String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+}
+function zaman(s) {
+  if (!s) return "—";
+  const d = new Date(s), fark = (Date.now() - d) / 60000;
+  if (fark < 1) return "az önce";
+  if (fark < 60) return Math.round(fark) + " dk önce";
+  if (fark < 1440) return Math.round(fark / 60) + " sa önce";
+  return d.toLocaleDateString("tr-TR", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
+}
+
+async function gir(k) {
+  k = (k || "").trim().toUpperCase();
+  if (k.length < 4) { $("#uyari").textContent = "Kodu eksiksiz girin."; return; }
+  $("#gir").disabled = true;
+  const { data, error } = await sb.rpc("takip", { p_kod: k });
+  $("#gir").disabled = false;
+  if (error) { $("#uyari").textContent = "Bağlanılamadı."; return; }
+  if (!data || !data.ok) { $("#uyari").textContent = "Bu kod takip ekranını açamıyor."; return; }
+  kod = k;
+  try { localStorage.setItem("sk:ykod", k); } catch (e) {}
+  veri = data;
+  $("#giris").style.display = "none";
+  $("#pano").style.display = "block";
+  ciz();
+}
+
+async function tazele() {
+  const { data } = await sb.rpc("takip", { p_kod: kod });
+  if (data && data.ok) { veri = data; ciz(); }
+}
+
+function ciz() {
+  const h = veri.hocalar || [], im = veri.isaretler || [];
+  $("#kim").textContent = veri.ad;
+
+  const say = (d) => im.filter((x) => x.durum === d).length;
+  const atanan = h.reduce((t, x) => t + Number(x.atanan || 0), 0);
+  $("#ozet").innerHTML = `
+    <div class="kutu"><b>${kac(im.length)}</b><small>işaret · ${kac(atanan)} atama</small></div>
+    <div class="kutu u"><b>${kac(say("uygun"))}</b><small>uygun</small></div>
+    <div class="kutu s"><b>${kac(say("supheli"))}</b><small>şüpheli</small></div>
+    <div class="kutu h"><b>${kac(say("hatali"))}</b><small>hatalı</small></div>
+    <div class="kutu"><b>${atanan ? Math.round(100 * im.length / atanan) : 0}%</b><small>tamamlanma</small></div>`;
+
+  $("#hocalar").innerHTML =
+    "<tr><th>Hoca</th><th>Kod</th><th>İlerleme</th><th>Ort. süre</th><th>Son işlem</th></tr>" +
+    (h.length ? h.map((x) => {
+      const y = x.atanan ? Math.round(100 * x.biten / x.atanan) : 0;
+      return `<tr><td>${esc(x.ad)}${x.rol === "yonetici" ? ' <span class="etiket">yönetici</span>' : ""}</td>
+        <td class="kimlik-kod">${esc(x.kod)}</td>
+        <td class="sayi"><span class="mini-cubuk"><i style="width:${y}%"></i></span>${x.biten} / ${x.atanan}</td>
+        <td class="sayi">${x.ort_sure ? x.ort_sure + " sn" : "—"}</td>
+        <td class="sayi">${zaman(x.son)}</td></tr>`;
+    }).join("") : '<tr><td colspan="5" style="color:var(--soluk)">Henüz hoca eklenmedi.</td></tr>');
+
+  // uyuşmazlıklar
+  const soruya = {};
+  im.forEach((x) => { (soruya[x.soru_id] ||= []).push(x); });
+  const ayrisan = Object.entries(soruya)
+    .filter(([, v]) => v.length > 1 && new Set(v.map((x) => x.durum)).size > 1);
+  $("#uyusmazlik").innerHTML = ayrisan.length
+    ? '<div class="sarma"><table><tr><th>Soru</th><th>Kararlar</th></tr>' + ayrisan.map(([sid, v]) =>
+        `<tr><td class="soru-kimlik">${esc(sid)}</td><td>${v.map((x) =>
+          `<div style="margin-bottom:6px"><span class="rozet ${x.durum}">${({uygun:"uygun",supheli:"şüpheli",hatali:"hatalı"})[x.durum]}</span>
+           <b style="font-weight:500"> ${esc(x.hoca)}</b>${x.aciklama ? " — " + esc(x.aciklama) : ""}</div>`
+        ).join("")}</td></tr>`).join("") + "</table></div>"
+    : '<div class="bos">Henüz iki hocanın aynı soruyu farklı işaretlediği bir durum yok.</div>';
+
+  // süzgeçler
+  const durumlar = [["hepsi","hepsi"], ["uygun","uygun"], ["supheli","şüpheli"], ["hatali","hatalı"]];
+  $("#suzgecler").innerHTML = durumlar.map(([d, etiket]) =>
+    `<button class="sz ${d === suzgec ? "secili" : ""}" data-sz="${d}">${etiket} ${
+      d === "hepsi" ? im.length : say(d)}</button>`).join("");
+
+  const liste = im.filter((x) => suzgec === "hepsi" || x.durum === suzgec);
+  $("#isaretler").innerHTML = liste.length
+    ? "<table><tr><th>Soru</th><th>Hoca</th><th>Karar</th><th>Kusurlar</th><th>Not</th><th>Ne zaman</th></tr>" +
+      liste.map((x) => `<tr>
+        <td class="soru-kimlik">${esc(x.soru_id)}</td>
+        <td>${esc(x.hoca)}</td>
+        <td><span class="rozet ${x.durum}">${({uygun:"uygun",supheli:"şüpheli",hatali:"hatalı"})[x.durum]}</span></td>
+        <td>${(x.kusurlar || []).map((k) => `<span class="etiket">${esc(k)}</span>`).join("") || "—"}</td>
+        <td>${esc(x.aciklama) || "—"}</td>
+        <td class="sayi">${zaman(x.guncellendi)}</td></tr>`).join("") + "</table>"
+    : '<div class="bos">Bu süzgeçte işaret yok.</div>';
+}
+
+$("#gir").addEventListener("click", () => gir($("#kod").value));
+$("#kod").addEventListener("keydown", (e) => { if (e.key === "Enter") gir($("#kod").value); });
+$("#yenile").addEventListener("click", tazele);
+document.addEventListener("click", (e) => {
+  const b = e.target.closest(".sz");
+  if (b) { suzgec = b.dataset.sz; ciz(); }
+});
+
+(() => {
+  const url = new URLSearchParams(location.search).get("kod");
+  let k = null;
+  try { k = localStorage.getItem("sk:ykod"); } catch (e) {}
+  if (url || k) { $("#kod").value = (url || k).toUpperCase(); gir(url || k); }
+  else $("#kod").focus();
+})();
+
+setInterval(() => { if (kod && !document.hidden) tazele(); }, 60000);
+</script>
+</body>
+</html>

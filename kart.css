@@ -35,10 +35,13 @@
 .katex{font-size:1.08em}
 
 .mat{white-space:nowrap}
-.kesir{display:inline-flex;flex-direction:column;vertical-align:-0.55em;
-  text-align:center;line-height:1.05;font-size:.92em}
-.kesir i{font-style:normal;padding:0 3px}
-.kesir i:first-child{border-bottom:1.5px solid currentColor}
+/* kesir satırın ortasına oturur; eski -0.55em taban çizgisinin çok altına düşürüyordu */
+.kesir{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;
+  vertical-align:middle;position:relative;top:-.06em;margin:0 .15em;
+  text-align:center;line-height:1.06;font-size:.74em}
+.kesir i{font-style:normal;display:block;padding:0 .3em}
+.kesir i:first-child{border-bottom:1.3px solid currentColor;padding-bottom:.08em}
+.kesir i:last-child{padding-top:.08em}
 .kart svg{max-width:100%;height:auto}
 
 /* inceleme ekranı: çok uzun şekiller sayfayı uzatmasın (oran korunur) */
