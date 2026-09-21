@@ -57,6 +57,10 @@ async function baslat() {
   $("#uygulama").style.display = "flex";
   $("#ad").textContent = ad;
   kusurlariKur();
+  // ilk girişte kılavuz kendiliğinden açılır, sonra üst çubuktan ulaşılır
+  let gordu = null;
+  try { gordu = localStorage.getItem("sk:kilavuz"); } catch (e) {}
+  if (!gordu) kilavuzAc(true);
   // kaldığı yerden devam: ilk işaretsiz soru
   const ilk = sorular.findIndex((s) => !s.durum);
   i = ilk === -1 ? 0 : ilk;
@@ -150,6 +154,23 @@ function ileri() {
   }
 }
 
+/* ── Kılavuz ──────────────────────────────────────────────────────── */
+
+function kilavuzAc(ac) {
+  $("#kilavuz").hidden = !ac;
+  if (ac) {
+    $("#kilavuz .kilavuz-govde").scrollTop = 0;
+    $("#kilavuz-kapat").focus();
+  } else {
+    try { localStorage.setItem("sk:kilavuz", "1"); } catch (e) {}
+  }
+}
+
+$("#kilavuz-ac").addEventListener("click", () => kilavuzAc(true));
+$("#kilavuz-kapat").addEventListener("click", () => kilavuzAc(false));
+$("#kilavuz-basla").addEventListener("click", () => kilavuzAc(false));
+$("#kilavuz").addEventListener("click", (e) => { if (e.target.id === "kilavuz") kilavuzAc(false); });
+
 /* ── Olaylar ──────────────────────────────────────────────────────── */
 
 $("#gir").addEventListener("click", () => girisDene($("#kod").value));
@@ -166,6 +187,7 @@ $("#cikis").addEventListener("click", () => {
 });
 
 document.addEventListener("click", (e) => {
+  if (!$("#kilavuz").hidden) return;
   const d = e.target.closest(".d");
   if (d) {
     const s = sorular[i];
@@ -196,6 +218,7 @@ $("#not").addEventListener("input", () => {
 });
 
 document.addEventListener("keydown", (e) => {
+  if (!$("#kilavuz").hidden) { if (e.key === "Escape") kilavuzAc(false); return; }
   if ($("#uygulama").style.display === "none") return;
   const yaziAlaninda = ["TEXTAREA", "INPUT"].includes(document.activeElement.tagName);
   if (yaziAlaninda) {
