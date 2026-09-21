@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Soru Kontrol · Tahta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<link rel="stylesheet" href="kart.css">
+<style>
+:root{
+  --zemin:#F4F2F8; --yuzey:#fff; --metin:#1F1A2E; --soluk:#6B6580; --cizgi:#E4DFEE;
+  --mor:#6725BD; --mor-acik:#F3ECFE;
+  --ok:#0E8F5F; --ok-zemin:#E4F7EF;
+  --uyari:#B9761A; --uyari-zemin:#FDF1DF;
+  --hata:#C3312F; --hata-zemin:#FCEAEA;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--zemin);color:var(--metin);
+     font-family:Poppins,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:15px}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,textarea{font:inherit}
+
+/* ── Giriş ─────────────────────────────────────────── */
+#giris{min-height:100%;display:grid;place-items:center;padding:24px}
+.giris-kutu{width:min(420px,100%);background:var(--yuzey);border-radius:18px;padding:36px 32px;
+  box-shadow:0 2px 24px rgba(31,26,46,.07)}
+.giris-kutu h1{margin:0 0 6px;font-size:23px;font-weight:600;letter-spacing:-.01em}
+.giris-kutu p{margin:0 0 26px;color:var(--soluk);font-size:14px;line-height:1.55}
+.kod-alan{width:100%;padding:15px 16px;border:2px solid var(--cizgi);border-radius:11px;
+  font-size:21px;letter-spacing:.22em;text-align:center;text-transform:uppercase;font-weight:600;
+  background:#fff;color:var(--metin)}
+.kod-alan:focus{outline:none;border-color:var(--mor)}
+.birincil{width:100%;margin-top:14px;padding:15px;border-radius:11px;background:var(--mor);color:#fff;
+  font-weight:600;font-size:16px}
+.birincil:disabled{opacity:.45;cursor:default}
+.uyari-satir{margin-top:14px;color:var(--hata);font-size:14px;min-height:20px;text-align:center}
+
+/* ── Üst çubuk ─────────────────────────────────────── */
+#uygulama{display:none;min-height:100%;flex-direction:column}
+.ust-cubuk{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(244,242,248,.94);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--cizgi);padding:11px 20px;
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.kimlik{font-weight:600}
+.kimlik small{display:block;font-weight:400;color:var(--soluk);font-size:12px}
+.ilerleme{flex:1;min-width:150px;display:flex;align-items:center;gap:11px}
+.cubuk{flex:1;height:7px;background:var(--cizgi);border-radius:99px;overflow:hidden}
+.cubuk i{display:block;height:100%;width:0;background:var(--mor);border-radius:99px;transition:width .25s}
+.sayac{font-size:13px;color:var(--soluk);font-variant-numeric:tabular-nums;white-space:nowrap}
+.gez{display:flex;gap:6px}
+.gez button{padding:7px 13px;border-radius:9px;border:1px solid var(--cizgi);background:#fff;font-size:14px}
+.gez button:disabled{opacity:.4;cursor:default}
+.cikis{color:var(--soluk);font-size:13px;text-decoration:underline}
+
+/* ── Kart alanı ────────────────────────────────────── */
+.alan{flex:1;padding:22px 20px 230px;display:flex;justify-content:center}
+.ikili{display:flex;gap:22px;align-items:flex-start;flex-wrap:wrap;justify-content:center;width:100%}
+.sutun{flex:0 1 auto}
+.sutun-basi{font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--soluk);margin:0 0 8px 4px}
+.kart-sar{background:var(--yuzey);border-radius:14px;overflow:hidden;box-shadow:0 1px 10px rgba(31,26,46,.06)}
+.kart-sar .kart{margin:0;width:820px;max-width:100%}
+@media (max-width:1760px){ .kart-sar .kart{width:min(820px,calc(100vw - 56px))} }
+
+/* ── Karar paneli ──────────────────────────────────── */
+.karar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--yuzey);
+  border-top:1px solid var(--cizgi);box-shadow:0 -3px 20px rgba(31,26,46,.08);
+  padding:14px 20px calc(14px + env(safe-area-inset-bottom,0px))}
+.karar-ic{max-width:1000px;margin:0 auto;display:flex;flex-direction:column;gap:11px}
+.durumlar{display:flex;gap:10px;flex-wrap:wrap}
+.d{flex:1;min-width:130px;padding:13px 10px;border-radius:11px;border:2px solid var(--cizgi);
+  background:#fff;font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:center;gap:8px}
+.d kbd{font:inherit;font-size:11px;color:var(--soluk);border:1px solid var(--cizgi);
+  border-radius:5px;padding:1px 5px}
+.d.uygun.secili{background:var(--ok-zemin);border-color:var(--ok);color:var(--ok)}
+.d.supheli.secili{background:var(--uyari-zemin);border-color:var(--uyari);color:var(--uyari)}
+.d.hatali.secili{background:var(--hata-zemin);border-color:var(--hata);color:var(--hata)}
+.kusurlar{display:flex;gap:7px;flex-wrap:wrap}
+.k{padding:7px 13px;border-radius:99px;border:1px solid var(--cizgi);background:#fff;
+  font-size:13px;color:var(--soluk)}
+.k.secili{background:var(--mor-acik);border-color:var(--mor);color:var(--mor);font-weight:600}
+.alt-satir{display:flex;gap:10px;align-items:stretch}
+.not{flex:1;padding:11px 13px;border:1px solid var(--cizgi);border-radius:10px;resize:vertical;
+  min-height:46px;max-height:120px;line-height:1.45;background:#fff;color:var(--metin)}
+.not:focus{outline:none;border-color:var(--mor)}
+.ilerle{padding:0 26px;border-radius:10px;background:var(--mor);color:#fff;font-weight:600;white-space:nowrap}
+.durum-yazi{font-size:12px;color:var(--soluk);min-height:16px}
+
+/* ── Bitti ekranı ──────────────────────────────────── */
+#bitti{display:none;padding:60px 24px;text-align:center}
+#bitti h2{font-size:26px;margin:0 0 10px}
+#bitti p{color:var(--soluk);max-width:460px;margin:0 auto 20px;line-height:1.6}
+
+@media (max-width:640px){
+  .alan{padding:16px 12px 280px}
+  .kart-sar .kart{padding:18px 16px 14px}
+  .d{min-width:0;font-size:14px;padding:12px 6px}
+  .d kbd{display:none}
+}
+</style>
+</head>
+<body>
+
+<section id="giris">
+  <div class="giris-kutu">
+    <h1>Soru Kontrol</h1>
+    <p>Tahta 5. sınıf matematik soru havuzu inceleme ekranı. Size iletilen <b>8 haneli kodu</b> girin.</p>
+    <input id="kod" class="kod-alan" maxlength="8" autocomplete="off" autocapitalize="characters"
+           spellcheck="false" placeholder="- - - - - - - -" aria-label="Erişim kodu">
+    <button id="gir" class="birincil">Giriş yap</button>
+    <div id="giris-uyari" class="uyari-satir" role="status"></div>
+  </div>
+</section>
+
+<main id="uygulama">
+  <header class="ust-cubuk">
+    <div class="kimlik"><span id="ad">—</span><small>Soru Kontrol · 5. sınıf matematik</small></div>
+    <div class="ilerleme">
+      <div class="cubuk"><i id="cubuk"></i></div>
+      <span class="sayac" id="sayac">0 / 0</span>
+    </div>
+    <div class="gez">
+      <button id="geri">← Önceki</button>
+      <button id="ileri">Sonraki →</button>
+    </div>
+    <button class="cikis" id="cikis">çıkış</button>
+  </header>
+
+  <div class="alan">
+    <div class="ikili">
+      <div class="sutun">
+        <p class="sutun-basi">Soru</p>
+        <div class="kart-sar" id="soru-kart"></div>
+      </div>
+      <div class="sutun">
+        <p class="sutun-basi">Cevap ve çözüm</p>
+        <div class="kart-sar" id="cevap-kart"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="karar">
+    <div class="karar-ic">
+      <div class="durumlar">
+        <button class="d uygun"   data-durum="uygun">Uygun <kbd>1</kbd></button>
+        <button class="d supheli" data-durum="supheli">Şüpheli <kbd>2</kbd></button>
+        <button class="d hatali"  data-durum="hatali">Hatalı <kbd>3</kbd></button>
+      </div>
+      <div class="kusurlar" id="kusurlar"></div>
+      <div class="alt-satir">
+        <textarea class="not" id="not" rows="1"
+          placeholder="Not (isteğe bağlı) — neyi düzeltmemiz gerekiyor?"></textarea>
+        <button class="ilerle" id="kaydet-ilerle">Kaydet ve ilerle</button>
+      </div>
+      <div class="durum-yazi" id="durum-yazi"></div>
+    </div>
+  </div>
+
+  <section id="bitti">
+    <h2>Tamamlandı 🎉</h2>
+    <p>Atanan soruların hepsini işaretlediniz. İşaretlerinizi düzeltmek isterseniz oklarla geri dönebilirsiniz.</p>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
