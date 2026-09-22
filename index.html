@@ -92,6 +92,7 @@ input,textarea{font:inherit}
 .durum-yazi.uyar{color:var(--uyari);font-weight:600}
 .ilerle{padding:0 26px;border-radius:10px;background:var(--mor);color:#fff;font-weight:600;white-space:nowrap}
 .durum-yazi{font-size:12px;color:var(--soluk);min-height:16px}
+.tutamak{display:none}
 
 /* ── Kılavuz ───────────────────────────────────────── */
 .kilavuz-ac{font-size:13px;color:var(--mor);text-decoration:underline;font-weight:600}
@@ -139,8 +140,30 @@ input,textarea{font:inherit}
 #bitti h2{font-size:26px;margin:0 0 10px}
 #bitti p{color:var(--soluk);max-width:460px;margin:0 auto 20px;line-height:1.6}
 
+/* ── Mobil: karar paneli katlanır (22 Eyl: panel cevap kartının bir kısmını kapatıyordu) ── */
+@media (max-width:820px){
+  .tutamak{display:flex;align-items:center;gap:10px;width:100%;padding:13px 4px 4px;
+    font-weight:600;font-size:15px;color:var(--metin)}
+  .tutamak-yazi{flex:0 0 auto}
+  .tutamak-ok{margin-left:auto;font-size:19px;line-height:1;transform:translateY(3px);
+    transition:transform .2s;color:var(--soluk)}
+  body.karar-acik .tutamak-ok{transform:rotate(180deg) translateY(2px)}
+  .durum-rozet{font-size:13px;font-weight:600;padding:3px 11px;border-radius:99px}
+  .durum-rozet.uygun{background:var(--ok-zemin);color:var(--ok)}
+  .durum-rozet.supheli{background:var(--uyari-zemin);color:var(--uyari)}
+  .durum-rozet.hatali{background:var(--hata-zemin);color:var(--hata)}
+  .durum-rozet.bos{color:var(--soluk);background:var(--zemin)}
+  .karar{padding-top:0}
+  .karar-ic{display:none}
+  body.karar-acik .karar-ic{display:flex}
+  /* katlıyken kart tam görünsün, açıkken panelin altında kalmasın */
+  .alan{padding-bottom:104px}
+  body.karar-acik .alan{padding-bottom:370px}
+}
+
 @media (max-width:640px){
-  .alan{padding:16px 12px 320px}
+  .alan{padding:16px 12px 104px}
+  body.karar-acik .alan{padding-bottom:370px}
   .kart-sar .kart{padding:18px 16px 14px}
   .kart-sar .soru,.kart-sar .secenekler,.kart-sar .alt{font-size:18px}
   .d{min-width:0;font-size:14px;padding:12px 6px}
@@ -194,7 +217,12 @@ input,textarea{font:inherit}
   </div>
 
   <div class="karar">
-    <div class="karar-ic">
+    <button class="tutamak" id="tutamak" aria-expanded="false" aria-controls="karar-ic">
+      <span class="tutamak-yazi">Değerlendir</span>
+      <span class="durum-rozet" id="tutamak-rozet"></span>
+      <span class="tutamak-ok">⌃</span>
+    </button>
+    <div class="karar-ic" id="karar-ic">
       <div class="durumlar">
         <button class="d uygun"   data-durum="uygun">Uygun <kbd>1</kbd></button>
         <button class="d supheli" data-durum="supheli">Şüpheli <kbd>2</kbd></button>

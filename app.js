@@ -90,6 +90,8 @@ function goster() {
   $("#not").classList.remove("gerekli");
   $("#bitti").style.display = "none";
   ilerlemeYaz();
+  tutamagiYaz();
+  panelAc(false);          // yeni soru katlı açılır, kart tam görünür
   acilis = Date.now();
   window.scrollTo({ top: 0, behavior: "instant" });
 }
@@ -143,6 +145,7 @@ async function kaydet(ilerle) {
   }
   $("#durum-yazi").textContent = "kaydedildi ✓";
   ilerlemeYaz();
+  tutamagiYaz();
   if (ilerle) ileri();
 }
 
@@ -153,6 +156,29 @@ function ileri() {
     $("#durum-yazi").textContent = "hepsi tamam";
   }
 }
+
+/* ── Mobil karar paneli: katlanır ─────────────────────────────────── */
+// 22 Eyl: sabit panel telefonda cevap kartının bir kısmını kapatıyordu. Panel artık
+// katlı başlar, tutamağa basınca açılır. Kaydetme sunucuda olduğu için ilerleme etkilenmez.
+const ETIKET = { uygun: "uygun", supheli: "şüpheli", hatali: "hatalı" };
+
+function panelAc(ac) {
+  document.body.classList.toggle("karar-acik", ac);
+  $("#tutamak").setAttribute("aria-expanded", ac ? "true" : "false");
+}
+
+function tutamagiYaz() {
+  const s = sorular[i];
+  const rozet = $("#tutamak-rozet");
+  const d = s && s.durum;
+  rozet.className = "durum-rozet " + (d || "bos");
+  rozet.textContent = d ? ETIKET[d] : "işaretlenmedi";
+  $("#tutamak .tutamak-yazi").textContent = d ? "Değerlendirmeyi düzenle" : "Değerlendir";
+}
+
+$("#tutamak").addEventListener("click", () => {
+  panelAc(!document.body.classList.contains("karar-acik"));
+});
 
 /* ── Kılavuz ──────────────────────────────────────────────────────── */
 
