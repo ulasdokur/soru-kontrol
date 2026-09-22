@@ -45,4 +45,4 @@
 .kart svg{max-width:100%;height:auto}
 
 /* inceleme ekranı: çok uzun şekiller sayfayı uzatmasın (oran korunur) */
-.kart .sekil svg{max-height:360px;width:auto}
+.kart .sekil svg{max-height:420px;width:auto}
