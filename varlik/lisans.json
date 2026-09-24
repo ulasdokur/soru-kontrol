@@ -128,5 +128,69 @@
   "genislik": 900,
   "dosya": "bitki-hucresi-2.jpg",
   "icerik": "Soğan zarı hücreleri yakın çekim; dikdörtgen hücreler, belirgin hücre duvarı ve koyu çekirdekler."
+ },
+ "geri-donusum-kutulari": {
+  "baslik": "Colorful recycling bins for waste segregation in a park in İzmir, Türkiye.",
+  "lisans": "Pexels License",
+  "yazar": "Hülya Ermiş Belek",
+  "kaynak": "https://www.pexels.com/photo/recycling-bins-in-izmir-park-39636697/",
+  "dosya": "geri-donusum-kutulari.jpg",
+  "icerik": "Yan yana dört geri dönüşüm kutusu; üzerlerinde organik/plastik/cam/kâğıt simgeleri OKUNUYOR. Sınıflandırma sorusu için birebir."
+ },
+ "cami-ic": {
+  "baslik": "Explore the intricate interiors of a beautifully designed mosque with ornate details and vibrant colors.",
+  "lisans": "Pexels License",
+  "yazar": "Fatmanur",
+  "kaynak": "https://www.pexels.com/photo/the-interior-of-a-building-with-a-staircase-and-ornate-ceiling-27988014/",
+  "dosya": "cami-ic.jpg",
+  "icerik": "Cami iç mekânı: mihrap ve minber görünüyor, süslemeli duvarlar. İç bölümler için uygun."
+ },
+ "cami-dis": {
+  "baslik": "Stunning view of mosque minarets stretching into a clear blue sky.",
+  "lisans": "Pexels License",
+  "yazar": "Hatice Dikçe",
+  "kaynak": "https://www.pexels.com/photo/majestic-minarets-against-clear-blue-sky-32040316/",
+  "dosya": "cami-dis.jpg",
+  "icerik": "Caminin dış görünümü: iki minare ve kubbe, mavi gökyüzüne karşı. Dış bölümler için uygun."
+ },
+ "manav-tezgah": {
+  "baslik": "A vibrant fruit market stall displaying a variety of fresh fruits such as pomegranates, oranges, and juices.",
+  "lisans": "Pexels License",
+  "yazar": "Fatih  Özer",
+  "kaynak": "https://www.pexels.com/photo/vibrant-fruit-market-stall-with-fresh-produce-29286426/",
+  "dosya": "manav-tezgah.jpg",
+  "icerik": "Manav tezgâhı: nar, portakal, muz ve diğer meyveler. ⚠️ Arka planda bir kişi silueti var; tanınabilir değil ama kişi içeren kare istemiyorsan KULLANMA."
+ },
+ "otobus": {
+  "baslik": "A bustling urban bus stop during sunset, showcasing public transportation and city life.",
+  "lisans": "Pexels License",
+  "yazar": "Ali Ramazan Çiftçi",
+  "kaynak": "https://www.pexels.com/photo/bus-stop-in-town-13247087/",
+  "dosya": "otobus.jpg",
+  "icerik": "Şehir otobüslerinin durakta sıralanması; uzakta küçük insan siluetleri var, tanınabilir kişi yok."
+ },
+ "kutuphane-raf": {
+  "baslik": "Well-lit library interior featuring rows of neatly organized bookshelves filled with books.",
+  "lisans": "Pexels License",
+  "yazar": "Ssümçiğ",
+  "kaynak": "https://www.pexels.com/photo/modern-library-interior-with-bookshelves-38323235/",
+  "dosya": "kutuphane-raf.jpg",
+  "icerik": "Kütüphane rafları, kitaplarla dolu; iki katlı düzen. İnsan yok."
+ },
+ "tarla-bugday": {
+  "baslik": "Combine harvester unloading grain into a truck in a rural agricultural field.",
+  "lisans": "Pexels License",
+  "yazar": "Refik Ekenel",
+  "kaynak": "https://www.pexels.com/photo/harvester-and-truck-on-field-19327950/",
+  "dosya": "tarla-bugday.jpg",
+  "icerik": "Buğday tarlasında biçerdöver ve yanında kamyon; hasat anı. Ekonomik faaliyet konusu için uygun."
+ },
+ "bozuk-para": {
+  "baslik": "Minimalist close-up of a gold Turkish lira coin on a dark background, symbolizing economy.",
+  "lisans": "Pexels License",
+  "yazar": "Hasan Albari",
+  "kaynak": "https://www.pexels.com/photo/round-gold-colored-1-coin-1350463/",
+  "dosya": "bozuk-para.jpg",
+  "icerik": "Koyu zeminde TEK bir madeni para yakın çekim. ⚠️ Güncel Türk lirası değil, eski/hatıra görünümlü. Para problemi sorusunda kullanma, yalnız 'madeni para' kavramı için."
  }
 }
