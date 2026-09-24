@@ -95,6 +95,9 @@ td.sayi{font-variant-numeric:tabular-nums;white-space:nowrap}
   <h2>Hocalar</h2>
   <div class="sarma"><table id="hocalar"></table></div>
 
+  <h2>Ücretler <span style="text-transform:none;letter-spacing:0;font-weight:400">— hak ediş biten değerlendirme sayısından birikir</span></h2>
+  <div class="sarma"><table id="ucret"></table></div>
+
   <h2>Uyuşmazlıklar <span style="text-transform:none;letter-spacing:0;font-weight:400">— aynı soruya farklı karar veren hocalar</span></h2>
   <div id="uyusmazlik"></div>
 
@@ -170,6 +173,29 @@ function ciz() {
         <td class="sayi">${x.ort_sure ? x.ort_sure + " sn" : "—"}</td>
         <td class="sayi">${zaman(x.son)}</td></tr>`;
     }).join("") : '<tr><td colspan="5" style="color:var(--soluk)">Henüz hoca eklenmedi.</td></tr>');
+
+  // ücretler — hak ediş = biten × soru başı ücret; bakiye = hak ediş − ödenen
+  const tl = (n) => Number(n || 0).toLocaleString("tr-TR", {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " TL";
+  const ucretliler = h.filter((x) => Number(x.hakedis || 0) > 0 || Number(x.odenen || 0) > 0);
+  const bakiyeTop = ucretliler.reduce((t, x) => t + Number(x.hakedis || 0) - Number(x.odenen || 0), 0);
+  $("#ucret").innerHTML =
+    "<tr><th>Hoca</th><th>Biten</th><th>Soru başı</th><th>Hak ediş</th><th>Ödenen</th><th>Bakiye</th></tr>" +
+    (ucretliler.length ? ucretliler.map((x) => {
+      const bak = Number(x.hakedis || 0) - Number(x.odenen || 0);
+      return `<tr><td>${esc(x.ad)}</td>
+        <td class="sayi">${x.biten}</td>
+        <td class="sayi">${tl(x.soru_ucret)}</td>
+        <td class="sayi">${tl(x.hakedis)}</td>
+        <td class="sayi">${tl(x.odenen)}</td>
+        <td class="sayi"><b style="color:${bak > 0 ? "var(--uyari)" : "var(--ok)"}">${tl(bak)}</b></td></tr>`;
+    }).join("") + `<tr><td colspan="5" style="text-align:right;color:var(--soluk)">ödenecek toplam</td>
+        <td class="sayi"><b>${tl(bakiyeTop)}</b></td></tr>`
+      : '<tr><td colspan="6" style="color:var(--soluk)">Henüz hak ediş yok.</td></tr>') +
+    ((veri.odemeler || []).length
+      ? '<tr><th colspan="6" style="padding-top:14px">Ödeme kayıtları</th></tr>' +
+        veri.odemeler.map((o) => `<tr><td>${esc(o.hoca)}</td><td colspan="3" style="color:var(--soluk)">${esc(o.aciklama || "—")}</td>
+          <td class="sayi">${tl(o.tutar)}</td><td class="sayi">${zaman(o.an)}</td></tr>`).join("")
+      : "");
 
   // uyuşmazlıklar
   const soruya = {};
