@@ -1,11 +1,132 @@
 {
- "ay-dolunay": {
+ "ay-sismin-evre": {
   "baslik": "File:Moon Phase and Libration, 2025 – Moon.1110.tif",
   "lisans": "Public domain",
   "yazar": "NASA's Scientific Visualization Studio (Ernie Wright, Noah Petro, James Tralie)",
   "kaynak": "https://commons.wikimedia.org/wiki/File%3AMoon%20Phase%20and%20Libration%2C%202025%20%E2%80%93%20Moon.1110.tif",
   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/Moon_Phase_and_Libration%2C_2025_%E2%80%93_Moon.1110.tif/lossless-page1-960px-Moon_Phase_and_Libration%2C_2025_%E2%80%93_Moon.1110.tif.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
   "genislik": 900,
-  "dosya": "ay-dolunay.png"
+  "dosya": "ay-sismin-evre.png",
+  "icerik": "Ay yüzeyi, şişkin (gibbous) evre — sağ kenarda dar karanlık şerit."
+ },
+ "ay-yuzeyi-krater": {
+  "baslik": "File:AS14-70-9679 - Apollo 14 - Apollo 14 Mission image - View of the lunar surface south of the Vesalius Crater and north of the Meitner Crater. - NARA - 16698840.jpg",
+  "lisans": "Public domain",
+  "yazar": "Unknown authorUnknown author or not provided",
+  "kaynak": "https://commons.wikimedia.org/wiki/File%3AAS14-70-9679%20-%20Apollo%2014%20-%20Apollo%2014%20Mission%20image%20-%20View%20of%20the%20lunar%20surface%20south%20of%20the%20Vesalius%20Crater%20and%20north%20of%20the%20Meitner%20Crater.%20-%20NARA%20-%2016698840.jpg",
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/AS14-70-9679_-_Apollo_14_-_Apollo_14_Mission_image_-_View_of_the_lunar_surface_south_of_the_Vesalius_Crater_and_north_of_the_Meitner_Crater._-_NARA_-_16698840.jpg/960px-thumbnail.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "genislik": 900,
+  "dosya": "ay-yuzeyi-krater.jpg",
+  "icerik": "Ay yüzeyinin yakın çekimi; çok sayıda çarpma krateri (Apollo 14)."
+ },
+ "gunes-lekesi": {
+  "baslik": "File:Faculae and Sunspots at Solar Maximum.tif",
+  "lisans": "Public domain",
+  "yazar": "NASA's Scientific Visualization Studio",
+  "kaynak": "https://commons.wikimedia.org/wiki/File%3AFaculae%20and%20Sunspots%20at%20Solar%20Maximum.tif",
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2e/Faculae_and_Sunspots_at_Solar_Maximum.tif/lossless-page1-960px-Faculae_and_Sunspots_at_Solar_Maximum.tif.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "genislik": 900,
+  "dosya": "gunes-lekesi.png",
+  "icerik": "Güneş diski; yüzeyinde koyu güneş lekeleri ve parlak fakülalar."
+ },
+ "dunya-uzaydan": {
+  "baslik": "File:Apollo 17 Blue Marble original orientation (AS17-148-22727).jpg",
+  "lisans": "Public domain",
+  "yazar": "NASA",
+  "kaynak": "https://commons.wikimedia.org/wiki/File%3AApollo%2017%20Blue%20Marble%20original%20orientation%20%28AS17-148-22727%29.jpg",
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b7/Apollo_17_Blue_Marble_original_orientation_%28AS17-148-22727%29.jpg/960px-Apollo_17_Blue_Marble_original_orientation_%28AS17-148-22727%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "genislik": 900,
+  "dosya": "dunya-uzaydan.jpg",
+  "icerik": "Dünya'nın uzaydan tam görüntüsü (Apollo 17 Mavi Bilye); kıtalar, okyanus ve bulutlar."
+ },
+ "termometre": {
+  "baslik": "File:34 Celsius recorded on Thermometer.jpg",
+  "lisans": "CC0",
+  "yazar": "Doggo19292",
+  "kaynak": "https://commons.wikimedia.org/wiki/File%3A34%20Celsius%20recorded%20on%20Thermometer.jpg",
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cc/34_Celsius_recorded_on_Thermometer.jpg/960px-34_Celsius_recorded_on_Thermometer.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "genislik": 900,
+  "dosya": "termometre.jpg",
+  "icerik": "Dijital termometre elde tutuluyor, ekranında sıcaklık değeri var."
+ },
+ "geri-donusum": {
+  "baslik": "File:Lisbon, Portugal - Many separate bins.jpg",
+  "lisans": "CC BY 2.0",
+  "yazar": "Sharon Hahn Darlin",
+  "kaynak": "https://commons.wikimedia.org/wiki/File%3ALisbon%2C%20Portugal%20-%20Many%20separate%20bins.jpg",
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/de/Lisbon%2C_Portugal_-_Many_separate_bins.jpg/960px-Lisbon%2C_Portugal_-_Many_separate_bins.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "genislik": 900,
+  "dosya": "geri-donusum.jpg",
+  "icerik": "Sokakta yan yana duran ayrı atık kumbaraları (cam/kâğıt/plastik ayrımı)."
+ },
+ "ay-evreleri-dizisi": {
+  "baslik": "File:Far side of the Moon - Lunar phases.png",
+  "lisans": "Public domain",
+  "yazar": "NASA",
+  "kaynak": "https://commons.wikimedia.org/wiki/File%3AFar%20side%20of%20the%20Moon%20-%20Lunar%20phases.png",
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c0/Far_side_of_the_Moon_-_Lunar_phases.png/960px-Far_side_of_the_Moon_-_Lunar_phases.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "genislik": 900,
+  "dosya": "ay-evreleri-dizisi.png",
+  "icerik": "Ay'ın beş evresi yan yana (Ay'ın uzak yüzü). Soldan sağa evre değişimi görülüyor."
+ },
+ "insan-organlari": {
+  "baslik": "File:Human Anatomy (NIH BioArt 519 - 657942).png",
+  "lisans": "Public domain",
+  "yazar": "Courtesy of NIAID\n\nRyan Kissinger",
+  "kaynak": "https://commons.wikimedia.org/wiki/File%3AHuman%20Anatomy%20%28NIH%20BioArt%20519%20-%20657942%29.png",
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c6/Human_Anatomy_%28NIH_BioArt_519_-_657942%29.png/960px-Human_Anatomy_%28NIH_BioArt_519_-_657942%29.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "genislik": 900,
+  "dosya": "insan-organlari.png",
+  "icerik": "İnsan vücudu şeması; iç organlar renkli gösterilmiş. (İskelet DEĞİL — organ/sistem konusu için.)"
+ },
+ "eriyen-buz": {
+  "baslik": "File:Melting ice on water.jpg",
+  "lisans": "Public domain",
+  "yazar": "Rosendahl",
+  "kaynak": "https://commons.wikimedia.org/wiki/File%3AMelting%20ice%20on%20water.jpg",
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4c/Melting_ice_on_water.jpg/960px-Melting_ice_on_water.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "genislik": 900,
+  "dosya": "eriyen-buz.jpg",
+  "icerik": "Su üstünde eriyen buz parçaları. (Buhar GÖRÜNMÜYOR — yalnız erime için kullanılabilir.)"
+ },
+ "dinamometre": {
+  "baslik": "File:Spring scale. Made in USSR.jpg",
+  "lisans": "CC0",
+  "yazar": "Bestalex",
+  "kaynak": "https://commons.wikimedia.org/wiki/File%3ASpring%20scale.%20Made%20in%20USSR.jpg",
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/88/Spring_scale._Made_in_USSR.jpg/960px-Spring_scale._Made_in_USSR.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "genislik": 900,
+  "dosya": "dinamometre.jpg",
+  "icerik": "Yaylı dinamometre (el kantarı); kancası ve üzerinde ölçek çizgileri var. Renkli, modern."
+ },
+ "dinamometre-2": {
+  "baslik": "File:Spring weighing scale.jpg",
+  "lisans": "Public domain",
+  "yazar": "NASA",
+  "kaynak": "https://commons.wikimedia.org/wiki/File%3ASpring%20weighing%20scale.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/5/59/Spring_weighing_scale.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+  "genislik": 900,
+  "dosya": "dinamometre-2.jpg",
+  "icerik": "Eski metal yaylı dinamometre, siyah-beyaz; kanca ve ölçek şeridi görünüyor."
+ },
+ "bitki-hucresi": {
+  "baslik": "File:Onion Cells Under the Microscope.jpg",
+  "lisans": "CC BY 4.0",
+  "yazar": "Syed Sajidul Islam",
+  "kaynak": "https://commons.wikimedia.org/wiki/File%3AOnion%20Cells%20Under%20the%20Microscope.jpg",
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/87/Onion_Cells_Under_the_Microscope.jpg/960px-Onion_Cells_Under_the_Microscope.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "genislik": 900,
+  "dosya": "bitki-hucresi.jpg",
+  "icerik": "Soğan zarı mikroskop altında (dairesel görüş alanı); hücre duvarları ve dizilişi görülüyor."
+ },
+ "bitki-hucresi-2": {
+  "baslik": "File:Onion Epidermis Cells W.M. 40x - 136.jpg",
+  "lisans": "CC BY 2.0",
+  "yazar": "loganrickert",
+  "kaynak": "https://commons.wikimedia.org/wiki/File%3AOnion%20Epidermis%20Cells%20W.M.%2040x%20-%20136.jpg",
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/Onion_Epidermis_Cells_W.M._40x_-_136.jpg/960px-Onion_Epidermis_Cells_W.M._40x_-_136.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "genislik": 900,
+  "dosya": "bitki-hucresi-2.jpg",
+  "icerik": "Soğan zarı hücreleri yakın çekim; dikdörtgen hücreler, belirgin hücre duvarı ve koyu çekirdekler."
  }
 }
