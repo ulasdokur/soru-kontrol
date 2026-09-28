@@ -46,3 +46,19 @@
 
 /* inceleme ekranı: çok uzun şekiller sayfayı uzatmasın (oran korunur) */
 .kart .sekil svg{max-height:420px;width:auto}
+
+/* 28 Eyl — motora eklenip siteye yansıtılmamış kurallar.
+   .vurgu asıl eksikti: havuzdaki 53 soru olumsuzluğu **...** ile vurguluyor,
+   sitede koyu görünüyordu ama altı çizili değildi (rakip yayınların standardı).
+   Diğer üçü henüz havuzda kullanılmayan özellikler için, ileriye dönük. */
+.vurgu{text-decoration:underline;text-underline-offset:3px}
+.gorsel{margin:16px auto;text-align:center}
+.gorsel img{max-width:100%;height:auto;border-radius:6px}
+.gorsel figcaption{font-size:13px;color:#6B6580;margin-top:5px;font-style:italic}
+.gorsel-sikler{display:grid;grid-template-columns:1fr 1fr;gap:16px 22px;margin:20px 0 0}
+.sik{display:flex;gap:8px;align-items:flex-start;border:1.4px solid #D8D0E8;border-radius:10px;padding:10px 12px}
+.sik>b{font-weight:700;font-size:21px;line-height:1.1}
+.sik-ic{flex:1;text-align:center}
+.sik-ic svg{max-width:100%;height:auto;max-height:190px}
+.sik-yazi{font-size:18px;margin-top:6px}
+.metinkutusu .islem{text-align:center;font-size:23px;line-height:2.0;font-weight:600}
